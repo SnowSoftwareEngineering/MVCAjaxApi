@@ -1,0 +1,25 @@
+﻿@model List<PokemonModel>
+
+<h1>Pokémon Info</h1>
+
+<form method="post" asp-action="FetchPokemonList">
+    <label for="pokemonNames">Enter Pokémon names or IDs (comma-separated):</label>
+    <input type="text" id="pokemonNames" name="pokemonNames" placeholder="e.g., pikachu, charmander, bulbasaur" />
+    <button type="submit">Fetch Pokémon</button>
+</form>
+
+@if (Model.Any())
+{
+    <h2>Pokémon List</h2>
+    @foreach (var pokemon in Model)
+    {
+        <div>
+            <h3>@pokemon.Name (ID: @pokemon.Id)</h3>
+            <img src="@pokemon.SpriteUrl" alt="@pokemon.Name" />
+        </div>
+    }
+}
+else
+{
+    <p>No Pokémon data to display.</p>
+}
